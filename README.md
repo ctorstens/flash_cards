@@ -1,4 +1,4 @@
-# flash_cards
+# Flash Cards
 ===
 
 ### Model
