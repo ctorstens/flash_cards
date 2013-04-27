@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="hero-unit">
+    <%if current_user%>
+    <h2>Welcome, <%= "#{current_user.first_name}" %> </h2>
+    <%end%>
+    <img src="/card-only.png"/>
+
+
+
+  </div><!-- .hero-unit -->
+
+  <div class="row">
+
+    <div class="span4">
+       <form method="post" name="input" action="/get_deck">
+        <input type="submit" value="Edit a Deck">
+      </form>
+      <br>
+      <hr>
+      <br>
+        <form method="post" name="input" action="/get_card">
+        <input type="submit" value="Edit a Deck">
+      </form>
+    </div>
+
+    <div class="span4">
+      <p>This is where the deck and cards will display</p>
+    </div>
+
+    <div class="span4">
+      <form method="post" name="input" action="/play">
+        <input type="submit" value="Play">
+      </form>
+      <br>
+      <hr>
+      <br>
+      <form method="post" name="input" action="/user_profile">
+      <input type="submit" value="View Profile">
+      </form>
+    </div>
+
+
+  </div><!-- .row -->
+</div><!-- .container -->
+

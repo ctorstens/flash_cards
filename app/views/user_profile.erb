@@ -1,0 +1,31 @@
+<div class="container">
+
+  <div class="hero-unit">
+    <%if current_user%>
+    <h2>Welcome, <%= "#{current_user.first_name}" %> </h2>
+    <%end%>
+    <img src="/card-only.png"/>
+
+
+
+  </div><!-- .hero-unit -->
+
+  <div class="row">
+
+    <div class="span4">
+      <h3>High Scores here</h3>
+    </div>
+
+    <div class="span4">
+      <h3>Something else here...</h3>
+    </div>
+
+    <div class="span4">
+      <form method="post" name="input" action="/play">
+        <input type="submit" value="Play">
+      </form>
+    </div>
+
+
+  </div><!-- .row -->
+</div><!-- .container -->

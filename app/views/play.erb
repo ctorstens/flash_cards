@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="hero-unit">
+    <%if current_user%>
+    <h2>Welcome, <%= "#{current_user.first_name}" %> </h2>
+    <%end%>
+    <img src="/card-only.png"/>
+
+
+
+  </div><!-- .hero-unit -->
+
+  <div class="row">
+
+    <div class="span4">
+      <h3>Question</h3>
+      <p>What is CSS?</p>?
+    </div>
+
+    <div class="span4">
+      <h3>Answer</h3>
+      <p>Short for Cascading Style Sheets, a new feature being added to HTML that gives both Web site developers and users more control over how pages are displayed.</p>?
+    </div>
+
+    <div class="span4">
+      <form method="post" name="input" action="/show_next_card">
+        <input type="submit" value="Next Card">
+      </form>
+      <br>
+      <hr>
+      <br>
+      <form method="post" name="input" action="/show_answer">
+        <input type="submit" value="View Answer">
+      </form>
+    </div>
+
+
+  </div><!-- .row -->
+</div><!-- .container -->

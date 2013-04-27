@@ -12,7 +12,7 @@ post '/create_user' do
 
 
   #SET SESSION ID
-  erb :index
+  erb :user_profile
 end
 
 
@@ -23,10 +23,14 @@ end
 
 
 post '/login' do
-  the_token = User.authenticate(params['email'], params['password'])
-  return 403 unless the_token
-  session[:token] = the_token
-  erb :index
+  # the_token = User.authenticate(params['email'], params['password'])
+  # return 403 unless the_token
+  # session[:token] = the_token
+  erb :user_profile
+end
+
+post '/play' do
+  erb :play
 end
 
 post '/logout' do
