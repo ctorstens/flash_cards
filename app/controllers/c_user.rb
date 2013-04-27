@@ -1,6 +1,3 @@
-
-
-
 ######################################################
 # CREATE
 ######################################################
@@ -13,26 +10,22 @@ post '/create_user' do
     password: params['password']
     })
 
-  # session[:token] = @user.id
-  ##SET SESSION ID
-  erb :dummy_index
+
+  #SET SESSION ID
+  erb :index
 end
 
 
 
 ###############################################################
-# READish
+# READ
 ###############################################################
 
-
-# get '/login' do
-#   erb :login
-# end
 
 post '/login' do
   the_token = User.authenticate(params['email'], params['password'])
   return 403 unless the_token
-  session[:token] = the_token.reset_token
+  session[:token] = the_token
   erb :index
 end
 

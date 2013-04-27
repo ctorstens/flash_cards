@@ -1,5 +1,3 @@
-
-
 class User < ActiveRecord::Base
   has_many :rounds
 
@@ -30,8 +28,8 @@ class User < ActiveRecord::Base
   end
 
   def create_token
-    self.token = Digest::MD5.hexdigest(self.email + Time.now.to_s + "kjsd94*asdHH*&h80fh")
-    return self.token
+    token = Digest::MD5.hexdigest(self.email + Time.now.to_s + "kjsd94*asdHH*&h80fh")
+    p token
   end
 
 end

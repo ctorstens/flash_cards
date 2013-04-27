@@ -1,7 +1,7 @@
 <div class="container">
          
   <div class="hero-unit">
-  <h2>Welcome to</h2>
+  <!-- <h2>Welcome to</h2> -->
   <img src="/logo-full.png"/>
   
   
@@ -11,18 +11,18 @@
       
   <div class="span4">
   <h3>Sign Up</h3>
-  <form>
+  <form method="post" action="/create_user">
   <input type="name" name="first_name" placeholder="First Name">
   <input type="name" name="last_name" placeholder="Last Name">
   <input type="name" name="email" placeholder="Email">
-  <input type="password" placeholder="Password">
-  <input type="submit" value="Sign Up">
+  <input type="password" name="password" placeholder="Password">
+  <input type="submit" value="Sign Up" >
   </form>    
   <br>
   <hr>
   <br>
   <h3>Log In</h3>
-   <form>
+   <form method="post" action="/login">
    <input type="name" name="email" placeholder="Email">
    <input type="password" name="password" placeholder="Password">
    <input type="submit" value="Log In">
@@ -31,7 +31,7 @@
  
   <div class="span4">
         
-  </div><!-- .span4 -->
+  </div>
 
   <div class="span4">
     <h3>High Scores here</h3>
