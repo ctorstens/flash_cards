@@ -23,9 +23,10 @@ end
 
 
 post '/login' do
-  # the_token = User.authenticate(params['email'], params['password'])
-  # return 403 unless the_token
-  # session[:token] = the_token
+
+  the_token = User.authenticate(params['email'], params['password'])
+  return 403 unless the_token
+  session[:token] = the_token
   erb :user_profile
 end
 
