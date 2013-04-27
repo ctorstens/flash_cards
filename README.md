@@ -3,7 +3,7 @@
 
 ### Model
 ---
-![IMGUR](http://i.imgur.com/nIunHu5.png)
+![IMGUR](http://i.imgur.com/3u5qSwc.png)
 
 ##### XML
 
@@ -59,6 +59,9 @@
 <row name="password_hash" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
+<row name="token" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -81,7 +84,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="636" y="474" name="rounds">
+<table x="626" y="477" name="rounds">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -115,6 +118,7 @@
 </key>
 </table>
 </sql>
+
 
 
 ```
