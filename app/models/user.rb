@@ -1,3 +1,5 @@
+
+
 class User < ActiveRecord::Base
   has_many :rounds
 
@@ -17,15 +19,19 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def self.authenticate(g_un, g_pw)
-    user = User.find_by_user_name(g_un)
+  def self.authenticate(g_email, g_pw)
+    user = User.find_by_email(g_email)
     return nil unless user
     if user.password == g_pw
-      # give token TODO
-      return user
+      user.create_token
     else
       return nil
     end
+  end
+
+  def create_token
+    self.token = Digest::MD5.hexdigest(self.email + Time.now.to_s + "kjsd94*asdHH*&h80fh")
+    return self.token
   end
 
 end
