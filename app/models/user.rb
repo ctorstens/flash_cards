@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
 
 
 
-  def self.authenticate(g_un, g_pw)
-    user = User.find_by_user_name(g_un)
+  def self.authenticate(g_email, g_pw)
+    user = User.find_by_email(g_email)
     return nil unless user
     if user.password == g_pw
       # give token TODO
