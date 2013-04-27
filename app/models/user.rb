@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
   end
 
   def create_token
-    token = Digest::MD5.hexdigest(self.email + Time.now.to_s + "kjsd94*asdHH*&h80fh")
-    p token
+    self.token = Digest::MD5.hexdigest(self.email + Time.now.to_s + "kjsd94*asdHH*&h80fh")
+    p self.token
   end
 
 end
