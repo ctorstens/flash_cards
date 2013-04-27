@@ -6,8 +6,6 @@ class User < ActiveRecord::Base
   validates :email, :presence => true
   validates :password_hash, :presence => true
 
-
-
   include BCrypt
 
   def password
@@ -18,8 +16,6 @@ class User < ActiveRecord::Base
     @password = Password.create(new_password)
     self.password_hash = @password
   end
-
-
 
   def self.authenticate(g_un, g_pw)
     user = User.find_by_user_name(g_un)
