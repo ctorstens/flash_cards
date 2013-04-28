@@ -10,11 +10,21 @@ post '/create_user' do
     password: params['password']
   })
   session[:token] = @new_user.token
-  redirect '/user_profile'
+  if session[:token]
+    redirect '/user_profile'
+  else
+    @message = "Sorry that email is already taken!"
+    erb :index
+  end
 end
 
 get '/user_profile' do
-  erb :user_profile
+  if session[:token]
+    erb :user_profile
+  else
+    @message = "Sorry you are not logged in!"
+    erb :index
+  end
 end
 
 
