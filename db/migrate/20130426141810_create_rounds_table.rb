@@ -5,6 +5,7 @@ class CreateRoundsTable < ActiveRecord::Migration
       t.references :user
       t.integer :count_correct
       t.integer :count_wrong
+      t.integer :card_id
     end
   end
 end
