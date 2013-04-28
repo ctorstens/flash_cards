@@ -12,12 +12,10 @@ end
 users = User.all
 
 # Create Decks
-3.times do
-  Deck.create({
-    name: Faker::Lorem.word
-    })
-end
-decks = Deck.all
+  Deck.create({name: "deck_title_1"})
+  Deck.create({name: "deck_title_2"})
+  Deck.create({name: "deck_title_2"})
+  decks = Deck.all
 
 # Create Cards
 64.times do

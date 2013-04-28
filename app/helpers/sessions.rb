@@ -9,4 +9,9 @@ helpers do
     the_seed = user_pw_hash + Time.now.to_s + "kjsd94*asdHH*&h80fh"
     Digest::MD5.hexdigest(the_seed)
   end
+
+  def current_round
+    @round ||= Deck.find(session[:deck_id])
+  end
+
 end

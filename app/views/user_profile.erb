@@ -1,10 +1,15 @@
 <div class="container">
 
   <div class="hero-unit">
+    <img class "logo" src="/card-only.png"/>
     <%if current_user%>
-    <h2>Welcome, <%= "#{current_user.first_name}" %> </h2>
+    <h2>Welcome, <%= "#{current_user.first_name.capitalize}" %>! </h2>
     <%end%>
-    <img src="/card-only.png"/>
+    <form method="get" name="input" action="/">
+    <input type="submit" value="Home">
+    <form method="post" name="input" action="/logout">
+    <input type="submit" value="Log Out">
+      </form>
 
 
 
@@ -17,11 +22,13 @@
     </div>
 
     <div class="span4">
-      <h3>Something else here...</h3>
-    </div>
 
-    <div class="span4">
-      <form method="post" name="input" action="/play">
+      <%@decks = Deck.all%>
+      <%@decks.each do |deck|%>
+      <%=deck.name%> <br>
+      <%end%>
+
+      <form method="post" name="input" action="/play_deck">
         <input type="submit" value="Play">
       </form>
     </div>
