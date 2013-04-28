@@ -29,17 +29,21 @@
 
     <div class="span4">
       <%if @current_round  %>
-      <form method="post" name="input" action="/show_answer">
+      <form method="post" name="input" action="/next_question">
+        <input type="hidden" name="answer" value="answer">
         <input type="submit" value="View Answer">
       </form>
+      <!-- <p><%= @current_round.deck_id %></p> -->
         <% if @current_answer %>
-        <form action="/next_question" method="post">
+        <form  method="post" name="input" action="/next_question">
           <input type="submit" value="Next Question">
         </form>
-        <form method="post" name="input" action="/correct">
+        <form method="post" name="input" action="/next_question">
+          <input type="hidden" name="correctness" value="correct">
           <input type="submit" value="Correct">
         </form>
-        <form method="post" name="input" action="/incorrect">
+        <form method="post" name="input" action="/next_question">
+          <input type="hidden" name="correctness" value="incorrect">
           <input type="submit" value="Incorrect">
         </form>
         <p>Correct: <%= @current_round.count_correct %> </p>
