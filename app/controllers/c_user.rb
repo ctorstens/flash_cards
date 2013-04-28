@@ -8,10 +8,8 @@ post '/create_user' do
     last_name: params['last_name'],
     email: params['email'],
     password: params['password']
-    })
-
+  })
   session[:token] = @new_user.token
-
   redirect '/user_profile'
 end
 
@@ -27,9 +25,12 @@ end
 
 
 post '/login' do
+  puts "first line of login"
   @user = User.authenticate(params['email'], params['password'])
   return 403 if @user == nil
+  puts "TOP"
   new_token = get_token
+  puts "BOTTOM"
   @user.token = new_token
   @user.save
   session[:token] = @user.token
@@ -39,13 +40,12 @@ end
 
 
 post '/logout' do
-  the_user = User.find_by_token(session[:token])
-  the_user.update_attributes(:token => nil)
-  the_user.save
+  @user = current_user
+  @user.token = nil
+  @user.save
   session[:token] = nil
-  redirect '/'
+  erb :testing_auth
 end
-
 
 
 ######################################################
