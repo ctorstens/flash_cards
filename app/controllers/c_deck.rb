@@ -1,6 +1,7 @@
 #####################################################
 # CREATE
 #####################################################
+
 get '/deck/create_deck' do
   "This is where you go to create a deck"
   erb :create_deck
@@ -12,13 +13,15 @@ post '/deck/create_deck' do
   erb :deck_profile
 end
 
+
 #####################################################
 # READ
 #####################################################
+
 get '/deck/:id' do
   "This is where you will view a deck"
-  @deck = Card.find(params)
-  erb:deck_profile
+  session[:deck_id] = 
+  erb :deck_profile
 end
 
 
@@ -36,7 +39,6 @@ post 'card/:id/edit' do
   @deck.update_attributes(params[:answer], params[:question])
   erb :card_profile
 end
-
 
 
 #####################################################

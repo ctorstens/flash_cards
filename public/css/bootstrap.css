@@ -6119,14 +6119,37 @@ a.badge:focus {
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
+  max-height: 220px;
+  min-height: 220px;
+  clear: both;
 }
 
 .hero-unit h1 {
+  
   margin-bottom: 0;
   font-size: 60px;
   line-height: 1;
   letter-spacing: -1px;
   color: inherit;
+}
+
+.hero-unit h2 {
+  float: left;
+  margin-top: 80px;
+  margin-left: 20px;
+  ;
+}
+
+.hero-unit form {
+  float: right;
+  margin-right:20px;
+  margin-top: 68px;
+}
+
+.hero-unit img {
+float: left;
+padding-left: 0px;
+margin: auto;
 }
 
 .hero-unit li {

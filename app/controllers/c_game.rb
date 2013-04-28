@@ -24,7 +24,7 @@ post '/show_answer' do
   @current_card = Card.find(@current_round.card_id)
   @current_answer = @current_card.answer
   @current_question = @current_card.question
-  erb :play
+  redirect '/next_question'
 end 
 
 post '/correct' do
@@ -34,7 +34,7 @@ post '/correct' do
   @current_card = Card.find(@current_round.card_id)
   @current_answer = @current_card.answer
   @current_question = @current_card.question
-  erb :play
+  redirect '/next_question'
 end 
 
 post '/incorrect' do

@@ -10,6 +10,10 @@ post '/create_user' do
     password: params['password']
   })
   session[:token] = @new_user.token
+  redirect '/user_profile'
+end
+
+get '/user_profile' do
   erb :user_profile
 end
 
@@ -34,9 +38,6 @@ post '/login' do
   erb :user_profile
 end
 
-post '/play' do
-  erb :play
-end
 
 post '/logout' do
   @user = current_user
