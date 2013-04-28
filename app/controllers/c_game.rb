@@ -1,35 +1,51 @@
 get '/play_deck' do
-  erb :play_deck
+  erb :play
 end
 
 
 post '/play_deck' do
-  @current_round = Round.create(deck_id: 1, user_id: 1, deck_id: 1, count_correct: 0, count_wrong: 0 )
-  p @current_round
-  @current_deck = Card.all
-  @current_question = @current_deck[0].question
-  erb :play_deck
+  @current_round = Round.create(deck_id: 1, user_id: 1, card_id: 1, count_correct: 0, count_wrong: 0 )
+  @current_card = Card.find(@current_round.card_id)
+  @current_question = @current_card.question
+  erb :play
 end
 
+post '/next_question' do
+  @current_round = Round.last
+  @current_round.card_id += 1
+  @current_round.save
+  @current_card = Card.find(@current_round.card_id)
+  @current_question = @current_card.question
+  erb :play
+end
 
-post '/see_answer' do
-  @current_deck = Card.all
-  @current_question = @current_deck[0].question
-  @current_answer = @current_deck[0].answer
- erb :play_deck
+post '/show_answer' do
+  @current_round = Round.last
+  @current_card = Card.find(@current_round.card_id)
+  @current_answer = @current_card.answer
+  @current_question = @current_card.question
+  erb :play
 end 
 
 post '/correct' do
   @current_round = Round.last
   @current_round.count_correct += 1
   @current_round.save
-  erb :play_deck
+  @current_card = Card.find(@current_round.card_id)
+  @current_answer = @current_card.answer
+  @current_question = @current_card.question
+  erb :play
 end 
 
 post '/incorrect' do
   @current_round = Round.last
-  p @current_round
   @current_round.count_wrong += 1
   @current_round.save
-  erb :play_deck
+  @current_card = Card.find(@current_round.card_id)
+  @current_answer = @current_card.answer
+  @current_question = @current_card.question
+  erb :play
 end
+
+
+
