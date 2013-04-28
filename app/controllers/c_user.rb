@@ -43,7 +43,7 @@ post '/logout' do
   @user.token = nil
   @user.save
   session[:token] = nil
-  erb :testing_auth
+  erb :index
 end
 
 
