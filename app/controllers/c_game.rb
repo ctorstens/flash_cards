@@ -14,28 +14,41 @@ post '/play_deck/:id' do
 end
 
 post '/next_question' do
-  puts params['correctness']
-  @current_round = Round.last
+  @current_round = Round.find(session[:round_id])
   @current_card = @current_round.deck.cards[session[:card_index]]
-  @current_question = @current_card.question
-  if params['correctness'] == "correct"
-    @current_round.count_correct += 1
-    @current_round.save
-    puts 'correct!!'
-  else
-    @current_round.count_wrong += 1
-    @current_round.save
-    puts 'incorrect!!'
-  end
-
-  if params['answer'] == "answer"
-    @current_answer = @current_card.answer
-  end
-  
   session[:card_index] += 1
-  @current_round.save
+
+  if session[:card_index] == @current_round.deck.cards.length - 1
+    erb :user_profile
+  else
+    @current_question = @current_card.question
+
+    if params['correctness'] == "correct"
+      @current_round.count_correct += 1
+      @current_round.save
+      puts 'correct!!'
+    else
+      @current_round.count_wrong += 1
+      @current_round.save
+      puts 'incorrect!!'
+    end
+    
+    @current_round.save
+    erb :play
+  end
+end
+
+
+post '/view_answer' do
+  @current_round = Round.find(session[:round_id])
+  @current_card = @current_round.deck.cards[session[:card_index]]
+  @current_answer = @current_card.answer
+  @current_question = @current_card.question
   erb :play
 end
+
+
+
 
 
 
