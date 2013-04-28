@@ -42,7 +42,7 @@ post '/logout' do
   @user = current_user
   @user.token = nil
   @user.save
-  session[:token] = nil
+  session.clear
   erb :index
 end
 
