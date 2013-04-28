@@ -5,9 +5,9 @@
     <%if current_user%>
     <h2>Welcome, <%= "#{current_user.first_name.capitalize}" %>! </h2>
     <%end%>
-    <form method="get" name="input" action="/">
+<!--     <form method="get" name="input" action="/">
       <input type="submit" value="Home">
-    </form>
+    </form> -->
     <form method="post" action="/logout">
       <input type="submit" value="Log Out">
     </form>
