@@ -3,15 +3,15 @@
 ######################################################
 
 post '/create_user' do
-  User.create({
+  @new_user = User.create({
     first_name: params['first_name'],
     last_name: params['last_name'],
     email: params['email'],
     password: params['password']
     })
 
+  session[:token] = @new_user.token
 
-  #SET SESSION ID
   erb :user_profile
 end
 
@@ -23,9 +23,13 @@ end
 
 
 post '/login' do
-  # the_token = User.authenticate(params['email'], params['password'])
-  # return 403 unless the_token
-  # session[:token] = the_token
+  @user = User.authenticate(params['email'], params['password'])
+  return 403 if @user == nil
+  new_token = get_token
+  @user.token = new_token
+  @user.save
+  session[:token] = @user.token
+  nil
   erb :user_profile
 end
 

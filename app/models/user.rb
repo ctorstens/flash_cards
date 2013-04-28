@@ -6,6 +6,12 @@ class User < ActiveRecord::Base
   validates :email, :presence => true
   validates :password_hash, :presence => true
 
+  before_save :initial_token
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   include BCrypt
 
   def password
@@ -18,18 +24,18 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(g_email, g_pw)
-    user = User.find_by_email(g_email)
-    return nil unless user
-    if user.password == g_pw
-      user.create_token
+    @user = User.find_by_email(g_email)
+    return nil unless @user
+    if @user.password == g_pw
+      @user
     else
-      return nil
+      nil
     end
   end
 
-  def create_token
-    self.token = Digest::MD5.hexdigest(self.email + Time.now.to_s + "kjsd94*asdHH*&h80fh")
-    p self.token
+  def initial_token
+    the_seed = self.password_hash + Time.now.to_s + "kjsd94*asdHH*&h80fh"
+    self.token = Digest::MD5.hexdigest(the_seed)
   end
 
 end
