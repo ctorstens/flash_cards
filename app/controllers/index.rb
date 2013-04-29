@@ -6,7 +6,7 @@ get '/' do
 
   # erg :user_profile unless current_user == nil
   if current_user
-    erb :user_profile
+    redirect '/user_profile'
   else
     erb :index
   end
