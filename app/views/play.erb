@@ -28,28 +28,30 @@
     </div>
 
     <div class="span4">
-      <%if @current_round  %>
-      <form method="post" name="input" action="/show_answer">
+      
+      <% if @current_answer %>
+      
+      <form method="post" name="input" action="/next_question">
+        <input type="hidden" name="correctness" value="correct">
+        <input type="submit" value="Correct">
+      </form>
+      <form method="post" name="input" action="/next_question">
+        <input type="hidden" name="correctness" value="incorrect">
+        <input type="submit" value="Incorrect">
+      </form>
+      <p>Correct: <%= @current_round.count_correct %> </p>
+      <p>Incorrect: <%= @current_round.count_wrong %> </p>
+      
+      <% else %>
+
+      <form method="post" name="input" action="/view_answer">
         <input type="submit" value="View Answer">
       </form>
-        <% if @current_answer %>
-        <form action="/next_question" method="post">
-          <input type="submit" value="Next Question">
-        </form>
-        <form method="post" name="input" action="/correct">
-          <input type="submit" value="Correct">
-        </form>
-        <form method="post" name="input" action="/incorrect">
-          <input type="submit" value="Incorrect">
-        </form>
-        <p>Correct: <%= @current_round.count_correct %> </p>
-        <p>Incorrect: <%= @current_round.count_wrong %> </p>
-        <% end %>
-      <% else %>
-      <form action="/play_deck" method="post">
-        <input type="submit" value="Play Game">
-      </form>
-       <% end %>
+
+      <% end %>
+
+      <br><a href='/user_profile'>Go to Profile</a>
+
     </div>
 
 

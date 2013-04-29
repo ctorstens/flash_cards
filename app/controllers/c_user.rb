@@ -10,11 +10,22 @@ post '/create_user' do
     password: params['password']
   })
   session[:token] = @new_user.token
-  redirect '/user_profile'
+  if session[:token]
+    redirect '/user_profile'
+  else
+    @message = "Sorry that email is already taken!"
+    erb :index
+  end
 end
 
 get '/user_profile' do
-  erb :user_profile
+  if session[:token]
+    @current_user_rounds = Round.where(user_id: current_user.id)
+    erb :user_profile
+  else
+    @message = "Sorry you are not logged in!"
+    erb :index
+  end
 end
 
 
@@ -35,7 +46,7 @@ post '/login' do
   @user.save
   session[:token] = @user.token
   nil
-  erb :user_profile
+  redirect '/user_profile'
 end
 
 
