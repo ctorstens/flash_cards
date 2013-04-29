@@ -20,6 +20,7 @@ end
 
 get '/user_profile' do
   if session[:token]
+    @current_user_rounds = Round.where(user_id: current_user.id)
     erb :user_profile
   else
     @message = "Sorry you are not logged in!"
@@ -45,7 +46,7 @@ post '/login' do
   @user.save
   session[:token] = @user.token
   nil
-  erb :user_profile
+  redirect '/user_profile'
 end
 
 

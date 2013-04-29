@@ -19,7 +19,7 @@ post '/next_question' do
   session[:card_index] += 1
 
   if session[:card_index] == @current_round.deck.cards.length - 1
-    erb :user_profile
+    redirect '/user_profile'
   else
     @current_question = @current_card.question
 

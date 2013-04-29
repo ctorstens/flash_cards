@@ -5,9 +5,6 @@
     <%if current_user%>
     <h2>Welcome, <%= "#{current_user.first_name.capitalize}" %>! </h2>
     <%end%>
-<!--     <form method="get" name="input" action="/">
-      <input type="submit" value="Home">
-    </form> -->
     <form method="post" action="/logout">
       <input type="submit" value="Log Out">
     </form>
@@ -20,6 +17,18 @@
 
     <div class="span4">
       <h3>High Scores here</h3>
+      <% if @current_user_rounds %>
+      <ul>
+        <% @current_user_rounds.each do |round| %>
+        <li>Round Number: <%= round.id %><br>
+          Deck: <%= round.deck_id %><br>
+          Correct: <%= round.count_correct %><br> 
+          Incorrect: <%= round.count_wrong %> </li><br>
+        <%end%>
+      </ul>
+
+     <%end%>
+
     </div>
 
     <div class="span4">
@@ -31,10 +40,6 @@
       </form>
       <%=deck.name%> <br>
       <%end%>
-
-<!--       <form method="post" name="input" action="/play_deck">
-        <input type="submit" value="Play">
-      </form> -->
     </div>
 
 
